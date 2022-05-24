@@ -76,3 +76,16 @@ We had achieved the following accuracy -
 | Point Difference        | 0.671    | 0.671    | 0.692  |
 | Form Difference 1       | 0.707    | 0.707    | 0.538  |
 | Form Difference 2       | 0.671    | 0.671    | 0.654  |
+
+Using the closing Betting Odds, we managed to achieve an accuracy of 72%.
+
+Now let us go over our ML Modelling stratergies. Upon exploring multiple classification models, Logistic Regression & XGBoost were the ones which gave us best results. Along with this, we had also added SMOTE Sampling in some our experiments which improved the recall of our models. Later we even built a ensemble (Stacking) model combining the predtive powers of Logistic Regression and XGBoost. Listed below are the accuracies of our best performing experiments - 
+
+| Model Description      | SMOTE | Cross Validation Dataset | Accuracy | Precison | Recall | AUC Score |
+| :---------------------:| :---: | :----------------------: | :------: | :------: | :----: | :-------: |
+| Logistic Regresion L1  | No    | Week Based Dataset       | 0.707    | 0.707    | 0.577  | 0.689     |
+| Logistic Regresion L1  | No    | K-fold Dataset           | 0.713    | 0.651    | 0.360  | 0.687     |
+| XGBoost                | Yes   | Week Based Dataset       | 0.732    | 0.732    | 0.692  | 0.714     |
+| XGBoost                | No    | K-fold Dataset           | 0.680    | 0.548    | 0.464  | 0.715     |
+| Stacking               | Yes   | Week Based Dataset       | 0.707    | 0.707    | 0.692  | 0.716     |
+| Stacking               | Yes   | K-fold Dataset           | 0.683    | 0.549    | 0.480  | 0.712     |
