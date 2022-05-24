@@ -1,21 +1,23 @@
 # EPL2022-Match-Prediction
 
-### EDA
+## 1. EDA
 
 Exploratory Data Analysis has been done in the following notebooks - 
 
-1. Analysis-v1 (Match Stats).ipynb
-2. Analysis-v2 (Team Performance).ipynb
-3. Analysis-v3 (Betting Odds).ipynb
+1. [Analysis-v1 (Match Stats).ipynb](https://github.com/VIGNESHinZONE/EPL2022-Match-Prediction/blob/main/1.Analysis-v1%20(Match%20Stats).ipynb)
+2. [Analysis-v2 (Team Performance).ipynb](https://github.com/VIGNESHinZONE/EPL2022-Match-Prediction/blob/main/2.%20Analysis-v2%20(Team%20Performance).ipynb)
+3. [Analysis-v3 (Betting Odds).ipynb](https://github.com/VIGNESHinZONE/EPL2022-Match-Prediction/blob/main/3.%20Analysis-v3%20Betting%20Odds.ipynb)
 
 Go through the notebooks in the above mentioned order
 
-### ML Modelling
+## 2. ML Modelling
+
+The Notebook for ML Modelling is done in [Modelling.ipynb](https://github.com/VIGNESHinZONE/EPL2022-Match-Prediction/blob/main/Modelling.ipynb).
 
 After having thoroughly explored the dataset and building multiple simple baseline models using the Probability scores or Point Difference or Form Difference, we were able to achieve an approx 72%. Any ML we perform should perform better than our Baseline models. We will be exploring different ML algorithms to build this strategy.
 
 
-#### Important Features
+### 2.1 Important Features
 
 Upon performing EDA, we have identified a few essential features that could determine the game's outcome. They are listed below - 
 
@@ -36,14 +38,14 @@ Upon performing EDA, we have identified a few essential features that could dete
     - Every season, the bottom three teams get relegated to a lower division, and three new teams from the lower division are included. These teams tend to be weaker playing sides. New Teams are - {'Norwich', 'Watford', 'Brentford'}
 
 
-#### Cross-Validation
+### 2.2 Cross-Validation
 
 It was observed that our Baseline model's performance was a bit weaker in the half of the tournament. So to effectively model our system, we adopted two validation strategies -
 
 1. We train a model on the first 30 weeks of the dataset and validate its performance on the last 8 weeks.
 2. We Randomly sample 80% of our dataset for the Train set and the rest of the 20% for validation. We might also experiment with K-fold random splitting as well
 
-#### Evaluation
+### 2.3 Evaluation
 
 For the task, we need to successfully predict if the Away team has won the game or not. Since we do not know how detrimental a False Positive or False Negative could be, both Recall & Precision are essential. Here is the list of metrics we will note to evaluate the performance of our ML model - 
 
@@ -53,10 +55,24 @@ For the task, we need to successfully predict if the Away team has won the game 
 4. ROC AUC score
 5. Confusion Matrix
 
-## Features Neglected or will be Later explored
+### 2.4 Features Neglected or will be Later explored
 
 1. We have decided not to use the Asian Handicap Betting Odds as there seems to be a slight confusion. The resources I had read online mentioned that a small penalty value gets added to the final score. But the key value descriptions do not provide information about the type of Asian handicap being used. Hence, I have decided to move forward with things that I already know.
 
 2. We would like to later explore the effect of Total Goals and its betting odds on the outcome of the game.
 
 3. We would like to explore the effect of information about the Day of the week and the week when the game was played.
+
+### 2.5 Features Neglected or will be Later explored
+
+Prior to Building a Machine Learning Model, we had built a simple hueristic model which was assigned to determine if Away team would win the match or not by comparing the Odds, Table Points and Current Form.
+
+We had achieved the following accuracy - 
+
+| Feature Classifier      | Accuracy | Precison | Recall | 
+| :---------------------: | :------: | :------: | :----: |
+| Opening Betting Odds    | 0.695    | 0.695    | 0.615  |
+| Closing Betting Odds    | 0.720    | 0.720    | 0.615  |
+| Point Difference        | 0.671    | 0.671    | 0.692  |
+| Form Difference 1       | 0.707    | 0.707    | 0.538  |
+| Form Difference 2       | 0.671    | 0.671    | 0.654  |
