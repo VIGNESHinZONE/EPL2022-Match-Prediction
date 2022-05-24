@@ -67,15 +67,26 @@ For the task, we need to successfully predict if the Away team has won the game 
 
 Prior to Building a Machine Learning Model, we had built a simple hueristic model which was assigned to determine if Away team would win the match or not by comparing the Odds, Table Points and Current Form.
 
-We had achieved the following accuracy - 
+We had achieved the following accuracy on Week Based Validation - 
 
 | Feature Classifier      | Accuracy | Precison | Recall | 
 | :---------------------: | :------: | :------: | :----: |
-| Opening Betting Odds    | 0.695    | 0.695    | 0.615  |
-| Closing Betting Odds    | 0.720    | 0.720    | 0.615  |
-| Point Difference        | 0.671    | 0.671    | 0.692  |
-| Form Difference 1       | 0.707    | 0.707    | 0.538  |
-| Form Difference 2       | 0.671    | 0.671    | 0.654  |
+| Opening Betting Odds    | 0.695    | 0.516    | 0.615  |
+| Closing Betting Odds    | 0.720    | 0.552    | 0.615  |
+| Point Difference        | 0.671    | 0.486    | 0.692  |
+| Form Difference 1       | 0.707    | 0.538    | 0.538  |
+| Form Difference 2       | 0.671    | 0.486    | 0.654  |
+
+Following metrics were achieved on the k-fold validation dataset - 
+
+| Feature Classifier      | Accuracy | Precison | Recall | 
+| :---------------------: | :------: | :------: | :----: |
+| Opening Betting Odds    | 0.721    | 0.579    | 0.664  |
+| Closing Betting Odds    | 0.743    | 0.610    | 0.680  |
+| Point Difference        | 0.680    | 0.536    | 0.520  |
+| Form Difference 1       | 0.680    | 0.535    | 0.496  |
+| Form Difference 2       | 0.628    | 0.468    | 0.632  |
+
 
 Using the closing Betting Odds, we managed to achieve an accuracy of 72%.
 
@@ -83,9 +94,15 @@ Now let us go over our ML Modelling stratergies. Upon exploring multiple classif
 
 | Model Description      | SMOTE | Cross Validation Dataset | Accuracy | Precison | Recall | AUC Score |
 | :---------------------:| :---: | :----------------------: | :------: | :------: | :----: | :-------: |
-| Logistic Regresion L1  | No    | Week Based Dataset       | 0.707    | 0.707    | 0.577  | 0.689     |
+| Logistic Regresion L1  | No    | Week Based Dataset       | 0.707    | 0.536    | 0.577  | 0.689     |
 | Logistic Regresion L1  | No    | K-fold Dataset           | 0.713    | 0.651    | 0.360  | 0.687     |
-| XGBoost                | Yes   | Week Based Dataset       | 0.732    | 0.732    | 0.692  | 0.714     |
+| XGBoost                | Yes   | Week Based Dataset       | 0.732    | 0.562    | 0.692  | 0.714     |
 | XGBoost                | No    | K-fold Dataset           | 0.680    | 0.548    | 0.464  | 0.715     |
-| Stacking               | Yes   | Week Based Dataset       | 0.707    | 0.707    | 0.692  | 0.716     |
-| Stacking               | Yes   | K-fold Dataset           | 0.683    | 0.549    | 0.480  | 0.712     |
+| Stacking               | Yes   | Week Based Dataset       | 0.707    | 0.529    | 0.692  | 0.716     |
+| Stacking               | No    | K-fold Dataset           | 0.683    | 0.549    | 0.480  | 0.712     |
+
+## 3. Conclusion
+
+Let's compare the performance of Hueristic models to ML Models from the table presented above. ML Models seem to perform better in Week Based Dataset, and Hueristic Models seem to serve better in Sampled (Stratified) k-fold dataset. We achieved an accuracy of 73% (56% precision and 70% recall) on ML Models trained on week based datasets. And we achieved an accuracy of 74% (61% precision and 68% recall) built on the k-fold dataset using heuristics. 
+
+Depending on the application of the problem, we can choose the appropriate modelling strategy. The ML model might be more suitable in a scenario where we want to place bets after collecting information about the teams' performance in the season. Similarly, relying on betting odds might be more suitable if we were to predict the outcome of any random game.
